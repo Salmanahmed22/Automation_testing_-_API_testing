@@ -22,6 +22,9 @@ public class HomePage extends BasePage {
     private static final By NAV_PHONES = By.xpath("//a[contains(@href,'route=product/category&path=24')]");
     private static final By NAV_MP3 = By.xpath("//a[contains(@href,'route=product/category&path=57') and contains(@class,'dropdown-toggle')]");
     private static final By SHOW_ALL_MP3 = By.xpath("//a[contains(@href,'route=product/category&path=57') and not(contains(@class,'dropdown-toggle'))]");
+    private static final By NAV_LAPTOPS = By.xpath("//a[contains(@href,'path=18') and contains(@class,'dropdown-toggle')]");
+    private static final By SHOW_ALL_LAPTOPS = By.xpath("//a[contains(@href,'route=product/category&path=18')]");
+    private static final By VIEW_CART_LINK = By.linkText("View Cart");
     private static final By SHOPPING_CART_BUTTON = By.cssSelector("#cart > button");
     private static final By CART_ITEM_COUNT = By.cssSelector("#cart > button > span.hidden-xs.hidden-sm.hidden-md");
 
@@ -75,6 +78,15 @@ public class HomePage extends BasePage {
     public void goToMP3Players() {
         new Actions(driver).moveToElement(driver.findElement(NAV_MP3)).perform();
         waitAndClick(SHOW_ALL_MP3);
+    }
+
+    public void goToLaptops() {
+        new Actions(driver).moveToElement(driver.findElement(NAV_LAPTOPS)).perform();
+        waitAndClick(SHOW_ALL_LAPTOPS);
+    }
+
+    public void clickViewCart() {
+        waitAndClick(VIEW_CART_LINK);
     }
 
     public String getCartItemCount() {

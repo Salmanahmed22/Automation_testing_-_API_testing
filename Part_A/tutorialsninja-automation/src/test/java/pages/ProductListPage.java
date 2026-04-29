@@ -18,6 +18,7 @@ public class ProductListPage extends BasePage {
     private static final By PRODUCT_PRICES = By.cssSelector(".product-thumb .price");
     private static final By ADD_TO_CART_BUTTONS = By.cssSelector(".product-thumb .btn-primary");
     private static final By PRODUCT_ITEMS = By.cssSelector(".product-thumb");
+    private static final By SUCCESS_TOAST = By.cssSelector(".alert-success");
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -49,6 +50,10 @@ public class ProductListPage extends BasePage {
 
     public void addToCartByIndex(int index) {
         driver.findElements(ADD_TO_CART_BUTTONS).get(index).click();
+    }
+
+    public boolean isSuccessToastDisplayed() {
+        return isDisplayed(SUCCESS_TOAST);
     }
 
     public void addToCartByName(String productName) {
