@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="TutorialsNinja Suite" verbose="1">
-    <test name="All Tests">
-        <packages>
-            <package name="tests"/>
-        </packages>
+<suite name="TutorialsNinja Suite" verbose="1" thread-count="1">
+
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <test name="Registration Tests">
+        <classes>
+            <class name="tests.RegistrationTest"/>
+        </classes>
     </test>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Navigation Tests">
+        <classes>
+            <class name="tests.BreadcrumbTest"/>
+        </classes>
+    </test>
+
+    <test name="Shopping Tests">
+        <classes>
+            <class name="tests.CurrencyTest"/>
+            <class name="tests.SortTest"/>
+            <class name="tests.SearchTest"/>
+            <class name="tests.SubcategorySearchTest"/>
+            <class name="tests.CartTest"/>
+            <class name="tests.CheckoutTest"/>
+        </classes>
+    </test>
+
 </suite>
