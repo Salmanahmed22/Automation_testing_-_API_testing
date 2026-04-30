@@ -13,8 +13,9 @@ public class CartPage extends BasePage {
     private static final By CART_ITEMS = By.cssSelector("#content table tbody tr");
     private static final By PRODUCT_NAME_IN_CART = By.cssSelector("#content table tbody tr td:nth-child(2) a");
     private static final By PRODUCT_PRICE_IN_CART = By.cssSelector("#content table tbody tr td:nth-child(5)");
-    private static final By TOTAL_PRICE = By.cssSelector("#content table tfoot tr:last-child td:last-child");
-    private static final By SUB_TOTAL = By.cssSelector("#content table tfoot tr:nth-child(1) td:last-child");
+    // Totals live in a separate table inside .col-sm-offset-8, not in a tfoot of the products table
+    private static final By TOTAL_PRICE = By.cssSelector("#content .col-sm-offset-8 table tr:last-child td:last-child");
+    private static final By SUB_TOTAL   = By.cssSelector("#content .col-sm-offset-8 table tr:first-child td:last-child");
     private static final By CHECKOUT_BUTTON = By.linkText("Checkout");
     private static final By VIEW_CART_BUTTON = By.linkText("View Cart");
     private static final By DATE_INPUT = By.cssSelector("input[id^='option']");

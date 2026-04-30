@@ -13,8 +13,9 @@ public class SearchResultsPage extends BasePage {
 
     private static final By SEARCH_KEYWORD_INPUT = By.id("input-search");
     private static final By SEARCH_BUTTON = By.id("button-search");
-    private static final By CATEGORY_DROPDOWN = By.id("input-category");
-    private static final By SEARCH_SUBCATEGORIES_CHECKBOX = By.id("input-sub-category");
+    // Actual HTML uses name attributes only — no id attributes on these elements
+    private static final By CATEGORY_DROPDOWN = By.name("category_id");
+    private static final By SEARCH_SUBCATEGORIES_CHECKBOX = By.name("sub_category");
     private static final By PRODUCT_NAMES = By.cssSelector(".product-thumb h4 a");
     private static final By NO_RESULTS_MESSAGE = By.cssSelector("#content p");
 
@@ -28,7 +29,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     public void selectCategory(String categoryText) {
-        new Select(driver.findElement(CATEGORY_DROPDOWN)).selectByVisibleText(categoryText);
+        new Select(waitForVisible(CATEGORY_DROPDOWN)).selectByVisibleText(categoryText);
     }
 
     public void checkSearchInSubcategories() {

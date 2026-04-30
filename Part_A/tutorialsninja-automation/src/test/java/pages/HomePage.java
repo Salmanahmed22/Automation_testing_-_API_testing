@@ -67,7 +67,7 @@ public class HomePage extends BasePage {
     }
 
     public void goToMP3Players() {
-        driver.get("http://tutorialsninja.com/demo/index.php?route=product/category&path=57");
+        driver.get("https://tutorialsninja.com/demo/index.php?route=product/category&path=34");
     }
 
     public void goToLaptops() {
