@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ConfigReader;
@@ -49,6 +50,12 @@ public class BasePage {
 
     protected String getText(By locator) {
         return waitForVisible(locator).getText();
+    }
+
+    protected void hoverAndClick(By hoverTarget, By clickTarget) {
+        WebElement target = wait.until(ExpectedConditions.visibilityOfElementLocated(hoverTarget));
+        new Actions(driver).moveToElement(target).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(clickTarget)).click();
     }
 
     protected boolean isDisplayed(By locator) {
