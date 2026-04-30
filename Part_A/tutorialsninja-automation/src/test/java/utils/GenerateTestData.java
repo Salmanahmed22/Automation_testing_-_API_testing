@@ -30,8 +30,9 @@ public class GenerateTestData {
     private static void createRegistrationSheet(XSSFWorkbook wb) {
         XSSFSheet sheet = wb.createSheet("Registration");
         writeRow(sheet, 0, "firstName", "lastName", "email", "telephone", "password", "confirmPassword");
-        writeRow(sheet, 1, "John", "Doe", "johndoe_auto1@test.com", "0501234567", "Test@1234", "Test@1234");
-        writeRow(sheet, 2, "Jane", "Smith", "janesmith_auto2@test.com", "0507654321", "Pass@5678", "Pass@5678");
+        long ts = System.currentTimeMillis();
+        writeRow(sheet, 1, "John", "Doe", "john_" + ts + "@test.com", "0501234567", "Test@1234", "Test@1234");
+        writeRow(sheet, 2, "Jane", "Smith", "jane_" + (ts + 10) + "@test.com", "0507654321", "Pass@5678", "Pass@5678");
     }
 
     private static void createLoginSheet(XSSFWorkbook wb) {

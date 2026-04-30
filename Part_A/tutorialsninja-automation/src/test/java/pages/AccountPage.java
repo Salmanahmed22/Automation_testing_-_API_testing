@@ -14,7 +14,12 @@ public class AccountPage extends BasePage {
     }
 
     public boolean isAccountPageDisplayed() {
-        return getText(PAGE_HEADING).contains("My Account");
+        try {
+            wait.until(org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated(PAGE_HEADING));
+            return getText(PAGE_HEADING).contains("My Account");
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String getPageHeading() {

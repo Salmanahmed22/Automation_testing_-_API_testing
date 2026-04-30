@@ -4,6 +4,7 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -61,9 +62,21 @@ public class ProductListPage extends BasePage {
         for (WebElement thumb : thumbs) {
             String name = thumb.findElement(By.cssSelector("h4 a")).getText();
             if (name.equals(productName)) {
-                thumb.findElement(By.cssSelector(".btn-primary")).click();
+                ((org.openqa.selenium.JavascriptExecutor) driver)
+                    .executeScript("arguments[0].scrollIntoView(true);", thumb);
+                try { Thread.sleep(500); } catch (InterruptedException e) {}
+                List<WebElement> buttons = thumb.findElements(By.cssSelector(".btn-primary"));
+                if (!buttons.isEmpty()) {
+                    ((org.openqa.selenium.JavascriptExecutor) driver)
+                        .executeScript("arguments[0].click();", buttons.get(0));
+                } else {
+                    thumb.findElement(By.cssSelector("h4 a")).click();
+                    wait.until(ExpectedConditions.elementToBeClickable(
+                        By.id("button-cart"))).click();
+                }
                 return;
             }
         }
+        throw new RuntimeException("Product not found on page: " + productName);
     }
 }

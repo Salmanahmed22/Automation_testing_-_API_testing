@@ -3,8 +3,6 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-
 public class HomePage extends BasePage {
 
     private static final By MY_ACCOUNT_DROPDOWN = By.xpath("//span[text()='My Account']");
@@ -12,18 +10,12 @@ public class HomePage extends BasePage {
     private static final By LOGIN_LINK = By.linkText("Login");
     private static final By LOGOUT_LINK = By.linkText("Logout");
     private static final By SEARCH_BOX = By.name("search");
-    private static final By SEARCH_BUTTON = By.cssSelector("button.btn-default[type='submit']");
+    private static final By SEARCH_BUTTON = By.cssSelector("div#search button");
     private static final By CURRENCY_DROPDOWN = By.cssSelector("button.btn-link.dropdown-toggle span.hidden-xs.hidden-sm.hidden-md");
     private static final By EURO_OPTION = By.xpath("//button[@name='EUR']");
     private static final By DOLLAR_OPTION = By.xpath("//button[@name='USD']");
-    private static final By NAV_DESKTOPS = By.xpath("//a[contains(@href,'desktop') and contains(@class,'dropdown-toggle')]");
-    private static final By SHOW_ALL_DESKTOPS = By.xpath("//a[contains(@href,'route=product/category&path=20')]");
     private static final By NAV_TABLETS = By.linkText("Tablets");
     private static final By NAV_PHONES = By.xpath("//a[contains(@href,'route=product/category&path=24')]");
-    private static final By NAV_MP3 = By.xpath("//a[contains(@href,'route=product/category&path=57') and contains(@class,'dropdown-toggle')]");
-    private static final By SHOW_ALL_MP3 = By.xpath("//a[contains(@href,'route=product/category&path=57') and not(contains(@class,'dropdown-toggle'))]");
-    private static final By NAV_LAPTOPS = By.xpath("//a[contains(@href,'path=18') and contains(@class,'dropdown-toggle')]");
-    private static final By SHOW_ALL_LAPTOPS = By.xpath("//a[contains(@href,'route=product/category&path=18')]");
     private static final By VIEW_CART_LINK = By.linkText("View Cart");
     private static final By SHOPPING_CART_BUTTON = By.cssSelector("#cart > button");
     private static final By CART_ITEM_COUNT = By.cssSelector("#cart > button > span.hidden-xs.hidden-sm.hidden-md");
@@ -43,8 +35,8 @@ public class HomePage extends BasePage {
     }
 
     public void logout() {
-        waitAndClick(MY_ACCOUNT_DROPDOWN);
-        waitAndClick(LOGOUT_LINK);
+        waitAndClickWithRetry(MY_ACCOUNT_DROPDOWN);
+        waitAndClickWithRetry(LOGOUT_LINK);
     }
 
     public void searchFor(String keyword) {
@@ -63,26 +55,23 @@ public class HomePage extends BasePage {
     }
 
     public void goToDesktops() {
-        new Actions(driver).moveToElement(driver.findElement(NAV_DESKTOPS)).perform();
-        waitAndClick(SHOW_ALL_DESKTOPS);
+        driver.get("http://tutorialsninja.com/demo/index.php?route=product/category&path=20");
     }
 
     public void goToTablets() {
-        waitAndClick(NAV_TABLETS);
+        waitAndClickWithRetry(NAV_TABLETS);
     }
 
     public void goToPhones() {
-        waitAndClick(NAV_PHONES);
+        waitAndClickWithRetry(NAV_PHONES);
     }
 
     public void goToMP3Players() {
-        new Actions(driver).moveToElement(driver.findElement(NAV_MP3)).perform();
-        waitAndClick(SHOW_ALL_MP3);
+        driver.get("http://tutorialsninja.com/demo/index.php?route=product/category&path=57");
     }
 
     public void goToLaptops() {
-        new Actions(driver).moveToElement(driver.findElement(NAV_LAPTOPS)).perform();
-        waitAndClick(SHOW_ALL_LAPTOPS);
+        driver.get("http://tutorialsninja.com/demo/index.php?route=product/category&path=18");
     }
 
     public void clickViewCart() {

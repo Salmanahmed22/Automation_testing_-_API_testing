@@ -22,13 +22,28 @@ public class BasePage {
     }
 
     protected void waitAndClick(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        try { Thread.sleep(600); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+        el.click();
     }
 
     protected void waitAndType(By locator, String text) {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
         element.clear();
+        try { Thread.sleep(400); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         element.sendKeys(text);
+    }
+
+    protected void waitAndClickWithRetry(By locator) {
+        int attempts = 0;
+        while (attempts < 3) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+                return;
+            } catch (org.openqa.selenium.StaleElementReferenceException e) {
+                attempts++;
+            }
+        }
     }
 
     protected WebElement waitForVisible(By locator) {

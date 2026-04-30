@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ProductListPage;
+import utils.ConfigReader;
 import utils.ExcelReader;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class CurrencyTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.login(email, password);
+        DriverManager.getDriver().get(ConfigReader.get("base.url"));
 
         homePage.goToDesktops();
 

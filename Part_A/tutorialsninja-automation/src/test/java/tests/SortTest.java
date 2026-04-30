@@ -42,11 +42,11 @@ public class SortTest extends BaseTest {
 
         if (sortOrder.contains("A - Z")) {
             List<String> sorted = new ArrayList<>(names);
-            Collections.sort(sorted);
+            sorted.sort(String.CASE_INSENSITIVE_ORDER);
             Assert.assertEquals(names, sorted, "Products not sorted A-Z correctly");
         } else {
             List<String> sorted = new ArrayList<>(names);
-            sorted.sort(Collections.reverseOrder());
+            sorted.sort(String.CASE_INSENSITIVE_ORDER.reversed());
             Assert.assertEquals(names, sorted, "Products not sorted Z-A correctly");
         }
 

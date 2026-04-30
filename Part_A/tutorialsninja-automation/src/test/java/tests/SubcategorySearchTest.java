@@ -22,6 +22,7 @@ public class SubcategorySearchTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.login(ConfigReader.get("valid.email"), ConfigReader.get("valid.password"));
+        DriverManager.getDriver().get(ConfigReader.get("base.url"));
 
         homePage.searchFor("Apple");
 

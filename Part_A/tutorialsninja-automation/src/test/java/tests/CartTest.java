@@ -23,6 +23,7 @@ public class CartTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.login(ConfigReader.get("valid.email"), ConfigReader.get("valid.password"));
+        DriverManager.getDriver().get(ConfigReader.get("base.url"));
 
         homePage.goToTablets();
 
@@ -45,7 +46,7 @@ public class CartTest extends BaseTest {
 
         homePage.goToLaptops();
 
-        productListPage.addToCartByName("HP LP3065");
+        productListPage.addToCartByName("MacBook");
 
         Thread.sleep(2000);
 
@@ -53,7 +54,8 @@ public class CartTest extends BaseTest {
         homePage.openCart();
         homePage.clickViewCart();
 
-        Assert.assertTrue(cartPage.isProductInCart("HP LP3065"), "Laptop not found in cart");
+        Assert.assertTrue(cartPage.isProductInCart("MacBook"), "Laptop not found in cart");
+        Assert.assertTrue(cartPage.isProductInCart("Samsung Galaxy Tab 10.1"), "Tablet not found in cart after adding laptop");
 
         String total = cartPage.getTotalPrice();
         Assert.assertNotNull(total, "Total price is null");

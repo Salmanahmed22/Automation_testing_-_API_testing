@@ -24,7 +24,7 @@ public class SearchResultsPage extends BasePage {
 
     public void searchWithKeyword(String keyword) {
         waitAndType(SEARCH_KEYWORD_INPUT, keyword);
-        waitAndClick(SEARCH_BUTTON);
+        waitAndClickWithRetry(SEARCH_BUTTON);
     }
 
     public void selectCategory(String categoryText) {

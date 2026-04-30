@@ -22,7 +22,7 @@ public class RegistrationTest extends BaseTest {
     @Story("Successful Registration")
     @Description("Register a new user with valid data and verify account creation")
     public void testSuccessfulRegistration(String firstName, String lastName, String email,
-                                           String telephone, String password, String confirmPassword) {
+                                            String telephone, String password, String confirmPassword) {
         navigateToRegister();
         fillRegistrationForm(firstName, lastName, email, telephone, password, confirmPassword);
         verifySuccessMessage();
@@ -64,14 +64,17 @@ public class RegistrationTest extends BaseTest {
         homePage.goToRegister();
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        registerPage.clickContinueWithoutFilling();
 
+        // Flow 1: submit completely empty form
+        registerPage.clickContinueWithoutFilling();
         Assert.assertTrue(registerPage.isFirstNameErrorDisplayed(), "First name error not shown");
         Assert.assertTrue(registerPage.isLastNameErrorDisplayed(), "Last name error not shown");
         Assert.assertTrue(registerPage.isEmailErrorDisplayed(), "Email error not shown");
         Assert.assertTrue(registerPage.isTelephoneErrorDisplayed(), "Telephone error not shown");
         Assert.assertTrue(registerPage.isPasswordErrorDisplayed(), "Password error not shown");
 
+        // Flow 2: reload page, submit with short password
+        DriverManager.getDriver().navigate().refresh();
         registerPage.fillWithShortPassword("Test", "User",
                 "shortpwdtest@test.com", "0501111111", "abc");
 

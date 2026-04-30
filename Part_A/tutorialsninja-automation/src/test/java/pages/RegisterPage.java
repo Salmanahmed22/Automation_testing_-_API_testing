@@ -15,11 +15,11 @@ public class RegisterPage extends BasePage {
     private static final By PRIVACY_POLICY_CHECKBOX = By.name("agree");
     private static final By CONTINUE_BUTTON = By.cssSelector("input[value='Continue']");
     private static final By SUCCESS_MESSAGE = By.cssSelector("#content h1");
-    private static final By FIRSTNAME_ERROR = By.cssSelector("#account > div:nth-child(1) .text-danger");
-    private static final By LASTNAME_ERROR = By.cssSelector("#account > div:nth-child(2) .text-danger");
-    private static final By EMAIL_ERROR = By.cssSelector("#account > div:nth-child(3) .text-danger");
-    private static final By TELEPHONE_ERROR = By.cssSelector("#account > div:nth-child(4) .text-danger");
-    private static final By PASSWORD_ERROR = By.cssSelector("#account > div:nth-child(5) .text-danger");
+    private static final By FIRSTNAME_ERROR  = By.xpath("//input[@id='input-firstname']/following-sibling::div[@class='text-danger']");
+    private static final By LASTNAME_ERROR   = By.xpath("//input[@id='input-lastname']/following-sibling::div[@class='text-danger']");
+    private static final By EMAIL_ERROR      = By.xpath("//input[@id='input-email']/following-sibling::div[@class='text-danger']");
+    private static final By TELEPHONE_ERROR  = By.xpath("//input[@id='input-telephone']/following-sibling::div[@class='text-danger']");
+    private static final By PASSWORD_ERROR   = By.xpath("//input[@id='input-password']/following-sibling::div[@class='text-danger']");
 
     public RegisterPage(WebDriver driver) {
         super(driver);

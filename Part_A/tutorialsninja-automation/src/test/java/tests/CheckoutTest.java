@@ -11,6 +11,7 @@ import pages.CheckoutPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ProductListPage;
+import utils.ConfigReader;
 import utils.ExcelReader;
 
 @Epic("Shopping Features")
@@ -33,6 +34,7 @@ public class CheckoutTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.login(email, password);
+        DriverManager.getDriver().get(ConfigReader.get("base.url"));
 
         homePage.goToMP3Players();
 

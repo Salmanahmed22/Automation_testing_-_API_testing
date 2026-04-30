@@ -30,6 +30,7 @@ public class LoginTest extends BaseTest {
         loginPage.login(email, password);
 
         if (expectedResult.equals("success")) {
+            try { Thread.sleep(1500); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
             AccountPage accountPage = new AccountPage(DriverManager.getDriver());
             Assert.assertTrue(accountPage.isAccountPageDisplayed(),
                     "Account page not displayed after valid login");
