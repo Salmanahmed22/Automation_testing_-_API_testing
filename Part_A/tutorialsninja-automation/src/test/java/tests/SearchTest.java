@@ -23,6 +23,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test(dataProvider = "searchData")
+    @Severity(SeverityLevel.CRITICAL)
     @Story("Search Functionality")
     @Description("Verify search returns relevant products")
     public void testSearchByName(String keyword, String expectedProduct) {

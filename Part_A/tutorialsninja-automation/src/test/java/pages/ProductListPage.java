@@ -12,14 +12,13 @@ import java.util.stream.Collectors;
 
 public class ProductListPage extends BasePage {
 
-    private static final By BREADCRUMB_LAST = By.cssSelector("#product-category li:last-child a, .breadcrumb li:last-child a");
+    private static final By BREADCRUMB_LAST  = By.cssSelector("#product-category li:last-child a, .breadcrumb li:last-child a");
     private static final By LEFT_MENU_ACTIVE = By.cssSelector("#column-left .list-group-item.active");
-    private static final By SORT_DROPDOWN = By.id("input-sort");
-    private static final By PRODUCT_NAMES = By.cssSelector(".product-thumb h4 a");
-    private static final By PRODUCT_PRICES = By.cssSelector(".product-thumb .price");
+    private static final By SORT_DROPDOWN    = By.id("input-sort");
+    private static final By PRODUCT_NAMES    = By.cssSelector(".product-thumb h4 a");
+    private static final By PRODUCT_PRICES   = By.cssSelector(".product-thumb .price");
     private static final By ADD_TO_CART_BUTTONS = By.cssSelector(".product-thumb .btn-primary");
-    private static final By PRODUCT_ITEMS = By.cssSelector(".product-thumb");
-    private static final By SUCCESS_TOAST = By.cssSelector(".alert-success");
+    private static final By SUCCESS_TOAST    = By.cssSelector(".alert-success");
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -53,8 +52,14 @@ public class ProductListPage extends BasePage {
         driver.findElements(ADD_TO_CART_BUTTONS).get(index).click();
     }
 
+    // Waits for the success alert to be visible — replaces Thread.sleep after add-to-cart
     public boolean isSuccessToastDisplayed() {
-        return isDisplayed(SUCCESS_TOAST);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS_TOAST));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void addToCartByName(String productName) {
@@ -63,16 +68,13 @@ public class ProductListPage extends BasePage {
             String name = thumb.findElement(By.cssSelector("h4 a")).getText();
             if (name.equals(productName)) {
                 ((org.openqa.selenium.JavascriptExecutor) driver)
-                    .executeScript("arguments[0].scrollIntoView(true);", thumb);
-                try { Thread.sleep(500); } catch (InterruptedException e) {}
+                        .executeScript("arguments[0].scrollIntoView(true);", thumb);
                 List<WebElement> buttons = thumb.findElements(By.cssSelector(".btn-primary"));
                 if (!buttons.isEmpty()) {
-                    ((org.openqa.selenium.JavascriptExecutor) driver)
-                        .executeScript("arguments[0].click();", buttons.get(0));
+                    wait.until(ExpectedConditions.elementToBeClickable(buttons.get(0))).click();
                 } else {
                     thumb.findElement(By.cssSelector("h4 a")).click();
-                    wait.until(ExpectedConditions.elementToBeClickable(
-                        By.id("button-cart"))).click();
+                    wait.until(ExpectedConditions.elementToBeClickable(By.id("button-cart"))).click();
                 }
                 return;
             }

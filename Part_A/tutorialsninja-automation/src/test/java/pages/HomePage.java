@@ -74,6 +74,19 @@ public class HomePage extends BasePage {
         driver.get("http://tutorialsninja.com/demo/index.php?route=product/category&path=18");
     }
 
+    public void navigateToCategoryByName(String category) {
+        switch (category.trim().toLowerCase()) {
+            case "tablets":     goToTablets();    break;
+            case "phones":
+            case "phones & pdas": goToPhones();  break;
+            case "desktops":    goToDesktops();   break;
+            case "mp3 players": goToMP3Players(); break;
+            case "laptops":
+            case "laptops & notebooks": goToLaptops(); break;
+            default: throw new IllegalArgumentException("Unknown category: " + category);
+        }
+    }
+
     public void clickViewCart() {
         waitAndClick(VIEW_CART_LINK);
     }

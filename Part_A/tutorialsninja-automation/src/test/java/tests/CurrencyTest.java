@@ -23,6 +23,7 @@ public class CurrencyTest extends BaseTest {
     }
 
     @Test(dataProvider = "currencyData")
+    @Severity(SeverityLevel.MINOR)
     @Story("Currency Change")
     @Description("Verify prices change when currency is switched")
     public void testCurrencyChange(String email, String password, String currency) {

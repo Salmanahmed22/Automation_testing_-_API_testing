@@ -22,15 +22,12 @@ public class BasePage {
     }
 
     protected void waitAndClick(By locator) {
-        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        try { Thread.sleep(600); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-        el.click();
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
     protected void waitAndType(By locator, String text) {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
         element.clear();
-        try { Thread.sleep(400); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         element.sendKeys(text);
     }
 

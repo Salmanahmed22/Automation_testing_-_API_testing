@@ -6,31 +6,77 @@
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
 
-    <test name="Registration Tests">
+    <!-- TC1 & TC2: Registration -->
+    <test name="Registration Without Errors">
         <classes>
-            <class name="tests.RegistrationTest"/>
+            <class name="tests.RegistrationSuccessTest"/>
         </classes>
     </test>
 
-    <test name="Login Tests">
+    <test name="Registration With Errors">
         <classes>
-            <class name="tests.LoginTest"/>
+            <class name="tests.RegistrationErrorsTest"/>
         </classes>
     </test>
 
-    <test name="Navigation Tests">
+    <!-- TC3 & TC4: Login -->
+    <test name="Valid Login">
+        <classes>
+            <class name="tests.ValidLoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Invalid Login">
+        <classes>
+            <class name="tests.InvalidLoginTest"/>
+        </classes>
+    </test>
+
+    <!-- TC5: Currency -->
+    <test name="Change Currency">
+        <classes>
+            <class name="tests.CurrencyTest"/>
+        </classes>
+    </test>
+
+    <!-- TC6: Breadcrumb -->
+    <test name="Breadcrumb and Left Menu">
         <classes>
             <class name="tests.BreadcrumbTest"/>
         </classes>
     </test>
 
-    <test name="Shopping Tests">
+    <!-- TC7: Sort -->
+    <test name="Sort By Name">
         <classes>
-            <class name="tests.CurrencyTest"/>
             <class name="tests.SortTest"/>
+        </classes>
+    </test>
+
+    <!-- TC8: Search -->
+    <test name="Search By Name">
+        <classes>
             <class name="tests.SearchTest"/>
+        </classes>
+    </test>
+
+    <!-- TC9: Subcategory Search -->
+    <test name="Search In Subcategories">
+        <classes>
             <class name="tests.SubcategorySearchTest"/>
+        </classes>
+    </test>
+
+    <!-- TC10: Cart -->
+    <test name="Add Items To Cart">
+        <classes>
             <class name="tests.CartTest"/>
+        </classes>
+    </test>
+
+    <!-- TC11: Checkout -->
+    <test name="Checkout Process">
+        <classes>
             <class name="tests.CheckoutTest"/>
         </classes>
     </test>
