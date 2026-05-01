@@ -15,6 +15,7 @@ import utils.ConfigReader;
 import utils.ExcelReader;
 
 @Epic("Shopping Features")
+@Feature("Cart & Checkout")
 public class CheckoutTest extends BaseTest {
 
     @DataProvider(name = "checkoutData")
@@ -59,6 +60,9 @@ public class CheckoutTest extends BaseTest {
         Assert.assertTrue(cartPage.isProductInCart(product), product + " not in cart");
         cartPage.getTotalPrice();
         cartPage.clickCheckout();
+        String url = DriverManager.getDriver().getCurrentUrl();
+        Assert.assertTrue(url.contains("route=checkout/checkout"),
+                "Checkout blocked — product may be out of stock or on backorder. Current page: " + url);
     }
 
     @Step("Fill billing details and proceed through all checkout steps")

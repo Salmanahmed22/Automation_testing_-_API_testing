@@ -18,3 +18,5 @@ Thumbs.db
 src/test/resources/testdata/*.tmp
 
 .claude/
+
+.allure/

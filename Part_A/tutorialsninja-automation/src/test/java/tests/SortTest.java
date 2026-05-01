@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Epic("Shopping Features")
+@Feature("Product Listing")
 public class SortTest extends BaseTest {
 
     @Test

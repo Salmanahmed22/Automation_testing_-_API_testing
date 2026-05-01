@@ -10,6 +10,7 @@ import pages.LoginPage;
 import utils.ExcelReader;
 
 @Epic("User Management")
+@Feature("Authentication")
 public class InvalidLoginTest extends BaseTest {
 
     @Test

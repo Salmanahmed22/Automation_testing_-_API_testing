@@ -15,6 +15,7 @@ import utils.ExcelReader;
 import java.util.List;
 
 @Epic("Shopping Features")
+@Feature("Currency")
 public class CurrencyTest extends BaseTest {
 
     @DataProvider(name = "currencyData")

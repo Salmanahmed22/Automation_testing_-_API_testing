@@ -11,6 +11,7 @@ import pages.RegisterPage;
 import utils.ExcelReader;
 
 @Epic("User Management")
+@Feature("Registration")
 public class RegistrationSuccessTest extends BaseTest {
 
     @DataProvider(name = "registrationData")

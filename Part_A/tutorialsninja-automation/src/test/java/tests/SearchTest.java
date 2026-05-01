@@ -15,6 +15,7 @@ import utils.ExcelReader;
 import java.util.List;
 
 @Epic("Shopping Features")
+@Feature("Search")
 public class SearchTest extends BaseTest {
 
     @DataProvider(name = "searchData")

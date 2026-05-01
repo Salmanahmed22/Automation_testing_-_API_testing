@@ -9,6 +9,7 @@ import pages.HomePage;
 import pages.RegisterPage;
 
 @Epic("User Management")
+@Feature("Registration")
 public class RegistrationErrorsTest extends BaseTest {
 
     @Test

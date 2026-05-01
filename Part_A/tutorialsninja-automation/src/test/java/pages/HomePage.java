@@ -15,13 +15,13 @@ public class HomePage extends BasePage {
     private static final By EURO_OPTION = By.xpath("//button[@name='EUR']");
     private static final By DOLLAR_OPTION = By.xpath("//button[@name='USD']");
     private static final By NAV_DESKTOPS = By.linkText("Desktops");
-    private static final By NAV_DESKTOPS_SHOW_ALL = By.xpath("//a[contains(@href,'path=20')][contains(.,'Show All')]");
+    private static final By NAV_DESKTOPS_SHOW_ALL = By.cssSelector("a.see-all[href*='path=20']");
     private static final By NAV_LAPTOPS = By.linkText("Laptops & Notebooks");
-    private static final By NAV_LAPTOPS_SHOW_ALL = By.xpath("//a[contains(@href,'path=18')][contains(.,'Show All')]");
+    private static final By NAV_LAPTOPS_SHOW_ALL = By.cssSelector("a.see-all[href*='path=18']");
     private static final By NAV_TABLETS = By.linkText("Tablets");
     private static final By NAV_PHONES = By.xpath("//a[contains(@href,'route=product/category&path=24')]");
     private static final By NAV_MP3 = By.linkText("MP3 Players");
-    private static final By NAV_MP3_SHOW_ALL = By.xpath("//a[contains(@href,'path=34')][contains(.,'Show All')]");
+    private static final By NAV_MP3_SHOW_ALL = By.cssSelector("a.see-all[href*='path=34']");
     private static final By VIEW_CART_LINK = By.linkText("View Cart");
     private static final By SHOPPING_CART_BUTTON = By.cssSelector("#cart > button");
     private static final By CART_ITEM_COUNT = By.cssSelector("#cart > button > span.hidden-xs.hidden-sm.hidden-md");

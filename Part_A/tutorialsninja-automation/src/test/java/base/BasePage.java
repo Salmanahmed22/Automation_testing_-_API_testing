@@ -55,7 +55,8 @@ public class BasePage {
     protected void hoverAndClick(By hoverTarget, By clickTarget) {
         WebElement target = wait.until(ExpectedConditions.visibilityOfElementLocated(hoverTarget));
         new Actions(driver).moveToElement(target).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(clickTarget)).click();
+        WebElement link = wait.until(ExpectedConditions.visibilityOfElementLocated(clickTarget));
+        new Actions(driver).moveToElement(link).click().perform();
     }
 
     protected boolean isDisplayed(By locator) {

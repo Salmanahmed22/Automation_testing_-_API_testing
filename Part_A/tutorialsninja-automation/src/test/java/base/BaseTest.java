@@ -1,11 +1,13 @@
 package base;
 
-import io.qameta.allure.Attachment;
+import io.qameta.allure.Allure;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.ConfigReader;
 import utils.ScreenshotUtil;
+
+import java.io.ByteArrayInputStream;
 
 public class BaseTest {
 
@@ -18,13 +20,17 @@ public class BaseTest {
     @AfterMethod
     public void tearDown(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
-            saveScreenshotOnFailure();
+            byte[] screenshot = ScreenshotUtil.takeScreenshot(DriverManager.getDriver());
+            Allure.addAttachment("Screenshot on Failure", "image/png",
+                    new ByteArrayInputStream(screenshot), "png");
+
+            Allure.addAttachment("Page URL on Failure",
+                    DriverManager.getDriver().getCurrentUrl());
+
+            Throwable cause = result.getThrowable();
+            Allure.addAttachment("Failure Log",
+                    cause != null ? cause.toString() : "Unknown failure");
         }
         DriverManager.quitDriver();
-    }
-
-    @Attachment(value = "Screenshot on Failure", type = "image/png")
-    private byte[] saveScreenshotOnFailure() {
-        return ScreenshotUtil.takeScreenshot(DriverManager.getDriver());
     }
 }

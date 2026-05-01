@@ -12,6 +12,7 @@ import pages.ProductListPage;
 import utils.ExcelReader;
 
 @Epic("Navigation")
+@Feature("Breadcrumb")
 public class BreadcrumbTest extends BaseTest {
 
     @DataProvider(name = "breadcrumbData")

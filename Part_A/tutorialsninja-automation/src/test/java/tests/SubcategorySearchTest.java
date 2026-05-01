@@ -13,6 +13,7 @@ import utils.ConfigReader;
 import utils.ExcelReader;
 
 @Epic("Shopping Features")
+@Feature("Search")
 public class SubcategorySearchTest extends BaseTest {
 
     @DataProvider(name = "subcategoryData")

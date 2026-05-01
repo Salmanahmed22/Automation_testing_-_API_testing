@@ -14,6 +14,7 @@ import utils.ConfigReader;
 import utils.ExcelReader;
 
 @Epic("Shopping Features")
+@Feature("Cart & Checkout")
 public class CartTest extends BaseTest {
 
     @DataProvider(name = "cartData")

@@ -11,6 +11,7 @@ import pages.LoginPage;
 import utils.ExcelReader;
 
 @Epic("User Management")
+@Feature("Authentication")
 public class ValidLoginTest extends BaseTest {
 
     @Test
