@@ -13,8 +13,10 @@ public class GenerateTestData {
         XSSFWorkbook workbook = new XSSFWorkbook();
 
         createRegistrationSheet(workbook);
+        createRegistrationErrorsSheet(workbook);
         createLoginSheet(workbook);
         createSearchSheet(workbook);
+        createSortSheet(workbook);
         createCurrencySheet(workbook);
         createCheckoutSheet(workbook);
         createCartSheet(workbook);
@@ -37,6 +39,13 @@ public class GenerateTestData {
         writeRow(sheet, 1, "John", "Doe", "john_" + ts + "@test.com", "0501234567", "Test@1234", "Test@1234");
     }
 
+    // TC2 — data for the short-password sub-scenario
+    private static void createRegistrationErrorsSheet(XSSFWorkbook wb) {
+        XSSFSheet sheet = wb.createSheet("RegistrationErrors");
+        writeRow(sheet, 0, "firstName", "lastName", "email", "telephone", "shortPassword");
+        writeRow(sheet, 1, "Test", "User", "shortpwdtest@test.com", "0501111111", "abc");
+    }
+
     // TC3 (row 0 = valid) + TC4 (row 1 = invalid) — each login test reads its row by index
     private static void createLoginSheet(XSSFWorkbook wb) {
         XSSFSheet sheet = wb.createSheet("Login");
@@ -48,8 +57,15 @@ public class GenerateTestData {
     // TC8 — Mac search only; Apple/subcategory search is TC9 (SubcategorySearchTest)
     private static void createSearchSheet(XSSFWorkbook wb) {
         XSSFSheet sheet = wb.createSheet("Search");
-        writeRow(sheet, 0, "keyword", "expectedProduct");
-        writeRow(sheet, 1, "Mac", "Mac");
+        writeRow(sheet, 0, "email", "password", "keyword", "expectedProduct");
+        writeRow(sheet, 1, "testuser_automation@gmail.com", "Test@1234", "Mac", "Mac");
+    }
+
+    // TC7 — credentials for the sort test
+    private static void createSortSheet(XSSFWorkbook wb) {
+        XSSFSheet sheet = wb.createSheet("Sort");
+        writeRow(sheet, 0, "email", "password");
+        writeRow(sheet, 1, "testuser_automation@gmail.com", "Test@1234");
     }
 
     // TC5

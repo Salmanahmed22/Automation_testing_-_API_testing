@@ -4,11 +4,12 @@ import base.BaseTest;
 import base.DriverManager;
 import io.qameta.allure.*;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ProductListPage;
-import utils.ConfigReader;
+import utils.ExcelReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +18,21 @@ import java.util.List;
 @Feature("Product Listing")
 public class SortTest extends BaseTest {
 
-    @Test
+    @DataProvider(name = "sortData")
+    public Object[][] sortData() {
+        return ExcelReader.getTestData("Sort");
+    }
+
+    @Test(dataProvider = "sortData")
     @Severity(SeverityLevel.NORMAL)
     @Story("Sort Products")
     @Description("Verify products are sorted correctly by name A-Z and Z-A on the Phones page")
-    public void testSortByName() {
+    public void testSortByName(String email, String password) {
         HomePage homePage = new HomePage(DriverManager.getDriver());
         homePage.goToLogin();
 
         new LoginPage(DriverManager.getDriver())
-                .login(ConfigReader.get("valid.email"), ConfigReader.get("valid.password"));
+                .login(email, password);
 
         homePage.goToPhones();
         ProductListPage productListPage = new ProductListPage(DriverManager.getDriver());

@@ -27,12 +27,12 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Story("Search Functionality")
     @Description("Verify search returns relevant products")
-    public void testSearchByName(String keyword, String expectedProduct) {
+    public void testSearchByName(String email, String password, String keyword, String expectedProduct) {
         HomePage homePage = new HomePage(DriverManager.getDriver());
         homePage.goToLogin();
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.login(ConfigReader.get("valid.email"), ConfigReader.get("valid.password"));
+        loginPage.login(email, password);
         DriverManager.getDriver().get(ConfigReader.get("base.url"));
 
         homePage.searchFor(keyword);
